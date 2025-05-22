@@ -646,6 +646,10 @@
 						$Arguments += " CHECKFORUPDATESATSTARTUP=0"
                     }
                     
+                    if ($ConfigurationData.ConfigData.Pro.AuthorizationType -ieq "NAMED_USER" -and -not([string]::IsNullOrEmpty($ConfigurationData.ConfigData.Pro.LicenseUrl))) {
+                        $Arguments += " LICENSE_URL=`"$($ConfigurationData.ConfigData.Pro.LicenseUrl)`""
+                    }
+
                     ArcGIS_Install ProInstall{
                         Name = "Pro"
                         Version = $ConfigurationData.ConfigData.ProVersion
